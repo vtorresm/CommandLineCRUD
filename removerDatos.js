@@ -7,7 +7,7 @@ export default async function removerDatos(info) {
   bdArchivoChequeo();
 
   try {
-    const respuestas = await inquirer.prompt([
+    const answers = await inquirer.prompt([
       {
         type: "input",
         name: "registroID",
@@ -16,9 +16,9 @@ export default async function removerDatos(info) {
     ]);
 
     let datosRestantes = [];
-    info.forEach((elemento) => {
-      if (elemento.id !== respuestas.registroID) {
-        datosRestantes.push(elemento);
+    info.forEach((element) => {
+      if (element.id !== answers.registroID) {
+        datosRestantes.push(element);
       }
     });
 
@@ -26,7 +26,7 @@ export default async function removerDatos(info) {
       if (err) {
         console.log(err);
       }
-      console.log("¡Eliminado!");
+      console.log("¡Dato eliminado correctamente!");
     });
   } catch (error) {
     console.log("¡Algo salió mal!", error);
