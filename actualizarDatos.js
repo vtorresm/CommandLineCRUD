@@ -56,9 +56,9 @@ async function actualizarDetalles(current, info) {
         name: "equipo",
         message: "Ingresa tu equipo de trabajo:",
         choices: [
-          {name: "D", value: "Desarrollo"},
-          {name: "R", value: "Release"},
-          {name: "S", value: "Soporte"},
+          {name: "Desarrollo", value: "Desarrollo"},
+          {name: "Release", value: "Release"},
+          {name: "Soporte", value: "Soporte"},
         ],
       },
     ]);
