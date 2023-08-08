@@ -7,7 +7,7 @@ export default async function actualizarDatos(info) {
   bdArchivoChequeo();
 
   try {
-    const respuestas = await inquirer.prompt([
+    const answers = await inquirer.prompt([
       {
         type: "input",
         name: "registroID",
@@ -15,13 +15,13 @@ export default async function actualizarDatos(info) {
       },
     ]);
 
-    let actual;
+    let current;
 
-    info.forEach((elemento) => {
-      if (elemento.id === respuestas.recordID) {
-        actual = elemento;
+    info.forEach((element) => {
+      if (element.id === answers.recordID) {
+        current = element;
 
-        actualizarDetalles(actual, info);
+        actualizarDetalles(current, info);
       }
     });
   } catch (error) {
@@ -29,42 +29,50 @@ export default async function actualizarDatos(info) {
   }
 }
 
-async function actualizarDetalles(actual, info) {
+async function actualizarDetalles(current, info) {
   try {
-    const devoluciones = await inquirer.prompt([
+    const returns = await inquirer.prompt([
       {
         type: "input",
-        default: actual.nombre,
+        default: current.nombre,
         name: "nombre",
-        message: "¿Cuál es tu nombre?",
+        message: "Ingresa el nombre:",
+      },
+      {
+        type: "input",
+        default: current.apellido,
+        name: "apellido",
+        message: "Ingresa el apellido:",
       },
       {
         type: "number",
-        default: actual.telefono,
+        default: current.telefono,
         name: "telefono",
-        message: "¿Cuál es tu teléfono?",
+        message: "Ingresa el Nro. de télefono:",
       },
       {
         type: "list",
-        default: actual.edad,
-        name: "edad",
-        message: "¿Eres un adulto?",
+        default: current.equipo,
+        name: "equipo",
+        message: "Ingresa tu equipo de trabajo:",
         choices: [
-          {name: "S", value: "Adulto"},
-          {name: "N", value: "Menor"},
+          {name: "D", value: "Desarrollo"},
+          {name: "R", value: "Release"},
+          {name: "S", value: "Soporte"},
         ],
       },
     ]);
 
-    actual.nombre = devoluciones.nombre;
-    actual.telefono = devoluciones.telefono;
-    actual.edad = devoluciones.edad;
+    current.nombre = returns.nombre;
+    current.apellido = returns.apellido;
+    current.telefono = returns.telefono;
+    current.equipo = returns.equipo;
 
     await fs.writeFile("bd.json", JSON.stringify(info), function (err) {
       if (err) {
         console.log(err);
       }
-      console.log("actualizado");
+      console.log("Datos actualizados correctamente");
     });
   } catch (error) {
     console.log("¡Algo salió mal!", error);
