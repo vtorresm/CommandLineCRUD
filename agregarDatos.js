@@ -5,35 +5,42 @@ import consultarBD from "./consultarBD.js"
 
 export default async function agregarDatos(info) {
   try {
-    const respuestas = await inquirer.prompt([
+    const answers = await inquirer.prompt([
       {
         type: "input",
         name: "nombre",
-        message: "¿Cómo te llamas?",
+        message: "Ingresa el nombre:",
+      },
+      {
+        type: "input",
+        name: "apellido",
+        message: "Ingresa los apellidos:",
       },
       {
         type: "number",
         name: "telefono",
-        message: "¿Cuál es tu teléfono?",
+        message: "Ingresa el Nro. de télefono:",
       },
       {
         type: "list",
-        name: "edad",
-        message: "¿Eres adulto?",
+        name: "equipo",
+        message: "Ingresa tu equipo de trabajo:",
         choices: [
-          {name: "S", value: "Adulto"},
-          {name: "N", value: "Menor"}
+          {name: "Desarrollo", value: "Desarrollo"},
+          {name: "Release", value: "Release"},
+          {name: "Soporte", value: "Soporte"}
         ],
       },
     ])
 
-    const datos = {
+    const data = {
       id: uuidv4(),
-      nombre: respuestas.nombre,
-      telefono: respuestas.telefono,
-      edad: respuestas.edad,
+      nombre: answers.nombre,
+      apellido: answers.apellido,
+      telefono: answers.telefono,
+      equipo: answers.equipo,
     }
-    info.push(datos)
+    info.push(data)
 
     if (fs.existsSync("bd.json")) {
       crearDetalles(info);
@@ -57,7 +64,7 @@ async function crearDetalles(info) {
     if (err) {
       console.log(err);
     }
-    console.log("¡Guardado!");
+    console.log("¡Datos Guardados correctamente!");
   });
 }
 
