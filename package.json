@@ -1,0 +1,29 @@
+{
+  "name": "commandlinecrud",
+  "version": "1.0.0",
+  "description": "Creación una aplicación CRUD de línea de comandos con Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtorresm/CommandLineCRUD.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "JavaScript",
+    "inquirer",
+    "uuid"
+  ],
+  "author": "Victor Torres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vtorresm/CommandLineCRUD/issues"
+  },
+  "homepage": "https://github.com/vtorresm/CommandLineCRUD#readme",
+  "dependencies": {
+    "inquirer": "^9.2.10",
+    "uuid": "^9.0.0"
+  }
+}
