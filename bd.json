@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fe9c5097-f79b-410f-a7ea-a858d44ade99",
+    "wi": 2134,
+    "iprPet": "PBKO-124",
+    "description": "Marca App mesero y Encuestas en NBO",
+    "tdp": "Marco Espinoza Valencia",
+    "fechaPaP": "11/08/2023",
+    "horaPaPi": "23:00:00",
+    "horaPaPf": "03:00:00",
+    "despliegue": "NTTDATA",
+    "sistema": "NBO",
+    "niubiz": "Javier Bautista",
+    "menu": ["NO"],
+    "clearing": ["NO"]
+  },
+  {
+    "id": "d4ad2d06-60d7-49b0-bd7e-1046ac0ca38e",
+    "wi": 2000,
+    "iprPet": "PBKO-156",
+    "description": "Creado _Cambio de modelo en NBO",
+    "tdp": "Fiorella Florencio Inga",
+    "fechaPaP": "11/08/2023",
+    "horaPaPi": "23:00:0",
+    "horaPaPf": "03:00:0",
+    "despliegue": "TDP",
+    "sistema": "NOC",
+    "niubiz": "Javier Bautista",
+    "menu": "NO",
+    "clearing": "NO"
+  }
+]
