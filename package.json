@@ -1,5 +1,5 @@
 {
-  "name": "commandlinecrud",
+  "name": "commandlinePaP",
   "version": "1.0.0",
   "description": "Creación una aplicación CRUD de línea de comandos con Node.js",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vtorresm/CommandLineCRUD.git"
+    "url": "git+https://github.com/vtorresm/CommandLinePaP.git"
   },
   "keywords": [
     "NodeJs",
@@ -20,9 +20,9 @@
   "author": "Victor Torres",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vtorresm/CommandLineCRUD/issues"
+    "url": "https://github.com/vtorresm/CommandLinePaP/issues"
   },
-  "homepage": "https://github.com/vtorresm/CommandLineCRUD#readme",
+  "homepage": "https://github.com/vtorresm/CommandLinePaP#readme",
   "dependencies": {
     "inquirer": "^9.2.10",
     "uuid": "^9.0.0"
