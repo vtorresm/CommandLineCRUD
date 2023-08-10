@@ -11,7 +11,7 @@ export default async function actualizarDatos(info) {
       {
         type: "input",
         name: "registroID",
-        message: "Ingresa Registro ID",
+        message: "Ingresa Registro ID:",
       },
     ]);
 
@@ -21,7 +21,7 @@ export default async function actualizarDatos(info) {
       if (element.id === answers.recordID) {
         current = element;
 
-        actualizarDetalles(current, info);
+        updateDetails(current, info);
       }
     });
   } catch (error) {
@@ -29,50 +29,120 @@ export default async function actualizarDatos(info) {
   }
 }
 
-async function actualizarDetalles(current, info) {
+async function updateDetails(current, info) {
   try {
     const returns = await inquirer.prompt([
       {
-        type: "input",
-        default: current.nombre,
-        name: "nombre",
-        message: "Ingresa el nombre:",
-      },
-      {
-        type: "input",
-        default: current.apellido,
-        name: "apellido",
-        message: "Ingresa el apellido:",
-      },
-      {
         type: "number",
-        default: current.telefono,
-        name: "telefono",
-        message: "Ingresa el Nro. de télefono:",
+        default: current.wi,
+        name: "wi",
+        message: "Ingresa el WI:",
+      },
+      {
+        type: "input",
+        default: current.iprPet,
+        name: "iprPet",
+        message: "Ingresa la PET/IPR:",
       },
       {
         type: "list",
-        default: current.equipo,
-        name: "equipo",
-        message: "Ingresa tu equipo de trabajo:",
+        default: current.tdp,
+        name: "tdp",
+        message: "Ingresa Coord. TDP:",
         choices: [
-          {name: "Desarrollo", value: "Desarrollo"},
-          {name: "Release", value: "Release"},
-          {name: "Soporte", value: "Soporte"},
+          {name: "Omar Loayza Becerra", value: "Omar Loayza Becerra"},
+          {name: "Julio Carmen Rodriguez", value: "Julio Carmen Rodriguez"},
+          {name: "Marco Espinoza Valencia", value: "Marco Espinoza Valencia"},
+          {name: "Fiorella Florencio", value: "Fiorella Florencio Inga"},
+          {name: "Saul Salhuana Machuca", value: "Saul Salhuana Machuca"},
+          ],
+      },
+      {
+        type: "input",
+        default: current.fechaPaP,
+        name: "fechaPaP",
+        message: "Ingresa fecha de pase:",
+      },
+      {
+        type: "input",
+        default: current.horaPaPi,
+        name: "horaPaPi",
+        message: "Ingresa hora inicio:",
+      },
+      {
+        type: "input",
+        default: current.horaPaPf,
+        name: "horaPaPf",
+        message: "Ingresa hora fin:",
+      },
+       {
+        type: "list",
+         default: current.despliegue,
+         name: "despliegue",
+         message: "Desplegado por:",
+        choices: [
+           {name: "NTTDATA", value: "NTTDATA"},
+           {name: "TDP", value: "TDP"}
         ],
+       },
+      {
+        type: "input",
+        default: current.sistema,
+        name: "sistema",
+        message: "Ingrese el Sistema:",
+      },
+      {
+        type: "list",
+        default: current.niubiz,
+        name: "niubiz",
+        message: "Ingresa Coord. Niubiz:",
+        choices: [
+          {name: "Cesar Curitomay", value: "Cesar Curitomay"},
+          {name: "Brando Avila", value: "Brando Avila"},
+          {name: "Lucia Escudero", value: "Lucia Escudero"},
+          {name: "Javier Bautista", value: "Javier Bautista"},
+          {name: "JJaime Alvarado", value: "Jaime Alvarado"},
+          ],
+      },
+      {
+        type: "list",
+        default: current.menu,
+        name: "menu",
+        message: "¿Se modifico el Menu GECOI ?",
+        choices: [
+          {name: "S", value: "SI"},
+          {name: "N", value: "NO"},
+        ],
+      },
+      {
+        type: "list",
+        default: current.clearing,
+        name: "clearing",
+        message: "¿Clearing Controlado ?",
+        choices: [
+          {name: "S", value: "SI"},
+          {name: "N", value: "NO"},
+          ],
       },
     ]);
 
-    current.nombre = returns.nombre;
-    current.apellido = returns.apellido;
-    current.telefono = returns.telefono;
-    current.equipo = returns.equipo;
+    current.wi = returns.wi;
+    current.iprPet = returns.iprPet;
+    current.tdp = returns.tdp;
+    current.fechaPaP = returns.fechaPaP;
+    current.horaPaPi = returns.horaPaPi;
+    current.horaPaPf = returns.horaPaPf;
+    current.despliegue = returns.despliegue;
+    current.sistema = returns.sistema;
+    current.niubiz = returns.niubiz;
+    current.menu = returns.menu;
+    current.clearing = returns.clearing;
 
     await fs.writeFile("bd.json", JSON.stringify(info), function (err) {
       if (err) {
         console.log(err);
       }
-      console.log("Datos actualizados correctamente");
+      console.log("Datos actualizados correctamente!");
     });
   } catch (error) {
     console.log("¡Algo salió mal!", error);
