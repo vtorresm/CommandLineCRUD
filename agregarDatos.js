@@ -7,38 +7,101 @@ export default async function agregarDatos(info) {
   try {
     const answers = await inquirer.prompt([
       {
-        type: "input",
-        name: "nombre",
-        message: "Ingresa el nombre:",
-      },
-      {
-        type: "input",
-        name: "apellido",
-        message: "Ingresa los apellidos:",
-      },
-      {
         type: "number",
-        name: "telefono",
-        message: "Ingresa el Nro. de télefono:",
+        name: "wi",
+        message: "Ingresa el WI:",
+      },
+      {
+        type: "input",
+        name: "iprPet",
+        message: "Ingresa la PET/IPR:",
       },
       {
         type: "list",
-        name: "equipo",
-        message: "Ingresa tu equipo de trabajo:",
+        name: "tdp",
+        message: "Ingresa Coord. TDP:",
         choices: [
-          {name: "Desarrollo", value: "Desarrollo"},
-          {name: "Release", value: "Release"},
-          {name: "Soporte", value: "Soporte"}
+          {name: "Omar Loayza Becerra", value: "Omar Loayza Becerra"},
+          {name: "Julio Carmen Rodriguez", value: "Julio Carmen Rodriguez"},
+          {name: "Marco Espinoza Valencia", value: "Marco Espinoza Valencia"},
+          {name: "Fiorella Florencio Inga", value: "Fiorella Florencio Inga"},
+          {name: "Saul Salhuana Machuca", value: "Saul Salhuana Machuca"},
+        ],
+      },
+      {
+        type: "input",
+        name: "fechaPaP",
+        message: "Ingresa fecha de pase:",
+      },
+      {
+        type: "input",
+        name: "horaPaPi",
+        message: "Ingresa hora inicio:",
+      },
+      {
+        type: "input",
+        name: "horaPaPf",
+        message: "Ingresa hora fin:",
+      },
+      {
+        type: "list",
+        name: "despliegue",
+        message: "Desplegado por:",
+        choices: [
+          {name: "NTTDATA", value: "NTTDATA"},
+          {name: "TDP", value: "TDP"}
+        ],
+      },
+      {
+        type: "input",
+        name: "sistema",
+        message: "Ingrese el Sistema:",
+      },
+      {
+        type: "list",
+        name: "niubiz",
+        message: "Ingresa Coord. Niubiz:",
+        choices: [
+          {name: "Cesar Curitomay", value: "Cesar Curitomay"},
+          {name: "Brando Avila", value: "Brando Avila"},
+          {name: "Lucia Escudero", value: "Lucia Escudero"},
+          {name: "Javier Bautista", value: "Javier Bautista"},
+          {name: "JJaime Alvarado", value: "Jaime Alvarado"},
+          ],
+      },
+      {
+        type: "list",
+        name: "menu",
+        message: "¿Se modifico el Menu GECOI ?",
+        choices: [
+          {name: "S", value: "SI"},
+          {name: "N", value: "NO"}
+        ],
+      },
+      {
+        type: "list",
+        name: "clearing",
+        message: "¿Clearing Controlado?",
+        choices: [
+          {name: "S", value: "SI"},
+          {name: "N", value: "NO"}
         ],
       },
     ])
 
     const data = {
       id: uuidv4(),
-      nombre: answers.nombre,
-      apellido: answers.apellido,
-      telefono: answers.telefono,
-      equipo: answers.equipo,
+      wi: answers.wi,
+      petipr: answers.petipr,
+      tdp: answers.tdp,
+      fechapap: answers.fechapap,
+      horapapi: answers.horapapi,
+      horapapf: answers.horapapf,
+      despliegue: answers.despliegue,
+      sistema: answers.sistema,
+      niubiz: answers.niubiz,
+      menu: answers.menu,
+      clearing: answers.clearing,
     }
     info.push(data)
 
