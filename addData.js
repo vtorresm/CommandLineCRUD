@@ -1,6 +1,8 @@
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+
 import queryDB from './queryDB.js';
 
 export default async function addData(info) {
@@ -9,22 +11,22 @@ export default async function addData(info) {
       {
         type: 'number',
         name: 'wi',
-        message: 'Ingresa el WI:',
+        message: chalk.green('Ingresa el WI:'),
       },
       {
         type: 'input',
         name: 'iprPet',
-        message: 'Ingresa la PET/IPR:',
+        message: chalk.green('Ingresa la PET/IPR:'),
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Ingresa la descripción:',
+        message: chalk.green('Ingresa la descripción:'),
       },
       {
         type: 'list',
         name: 'tdp',
-        message: 'Ingresa Coord. TDP:',
+        message: chalk.green('Ingresa Coord. TDP:'),
         choices: [
           { name: 'Omar Loayza Becerra', value: 'Omar Loayza Becerra' },
           { name: 'Julio Carmen Rodriguez', value: 'Julio Carmen Rodriguez' },
@@ -36,22 +38,22 @@ export default async function addData(info) {
       {
         type: 'input',
         name: 'fechaPaP',
-        message: 'Ingresa fecha de pase:',
+        message: chalk.green('Ingresa fecha de pase:'),
       },
       {
         type: 'input',
         name: 'horaPaPi',
-        message: 'Ingresa hora inicio:',
+        message: chalk.green('Ingresa hora inicio:'),
       },
       {
         type: 'input',
         name: 'horaPaPf',
-        message: 'Ingresa hora fin:',
+        message: chalk.green('Ingresa hora fin:'),
       },
       {
         type: 'list',
         name: 'despliegue',
-        message: 'Desplegado por:',
+        message: chalk.green('Desplegado por:'),
         choices: [
           { name: 'NTTDATA', value: 'NTTDATA' },
           { name: 'TDP', value: 'TDP' },
@@ -60,12 +62,12 @@ export default async function addData(info) {
       {
         type: 'input',
         name: 'sistema',
-        message: 'Ingrese el Sistema:',
+        message: chalk.green('Ingrese el Sistema:'),
       },
       {
         type: 'list',
         name: 'niubiz',
-        message: 'Ingresa Coord. Niubiz:',
+        message: chalk.green('Ingresa Coord. Niubiz:'),
         choices: [
           { name: 'Cesar Curitomay', value: 'Cesar Curitomay' },
           { name: 'Brando Avila', value: 'Brando Avila' },
@@ -77,13 +79,13 @@ export default async function addData(info) {
       {
         type: 'checkbox',
         name: 'menu',
-        message: '¿Se modificó el Menu GECOI ?',
+        message: chalk.green('¿Se modificó el Menu GECOI ?'),
         choices: [{ name: 'SI' }, { name: 'NO', checked: true }],
       },
       {
         type: 'checkbox',
         name: 'clearing',
-        message: '¿Clearing Controlado?',
+        message: chalk.green('¿Clearing Controlado?'),
         choices: [{ name: 'SI' }, { name: 'NO', checked: true }],
       },
     ]);
@@ -110,23 +112,24 @@ export default async function addData(info) {
     } else {
       fs.appendFile('bd.json', '[]', (err) => {
         if (err) {
-          console.log('No se pudo crear bd.json', err);
+          console.log(chalk.white.bgRed('No se pudo crear bd.json', err));
           return;
         }
         createDetails(info);
       });
     }
   } catch (error) {
-    console.log('¡Algo salió mal!', error);
+    console.log(chalk.white.bgRed('¡Algo salió mal!', error));
   }
 }
 
 async function createDetails(info) {
   await fs.writeFile('bd.json', JSON.stringify(info), function (err) {
     if (err) {
-      console.log(err);
+      console.log(chalk.white.bgRedBright(err));
     }
-    console.log('¡Datos Guardados correctamente!');
+    console.log('');
+    console.log(chalk.black.bgBlue('¡Datos Guardados correctamente!'));
   });
 }
 

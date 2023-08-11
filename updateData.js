@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 import fs from 'fs';
 import queryDB from './queryDB.js';
 import dbFileCheck from './dbFileCheck.js';
@@ -11,7 +12,7 @@ export default async function updateData(info) {
       {
         type: 'input',
         name: 'recordID',
-        message: 'Ingresa Registro ID:',
+        message: chalk.blue.bold('Ingresa Registro ID:'),
       },
     ]);
 
@@ -25,7 +26,7 @@ export default async function updateData(info) {
       }
     });
   } catch (error) {
-    console.log('Algo salió mal!', error);
+    console.log(chalk.white.bgRed('Algo salió mal!', error));
   }
 }
 
@@ -36,25 +37,25 @@ async function updateDetails(current, info) {
         type: 'number',
         default: current.wi,
         name: 'wi',
-        message: 'Ingresa el WI:',
+        message: chalk.blue.bold('Ingresa el WI:'),
       },
       {
         type: 'input',
         default: current.iprPet,
         name: 'iprPet',
-        message: 'Ingresa la PET/IPR:',
+        message: chalk.blue.bold('Ingresa la PET/IPR:'),
       },
       {
         type: 'input',
         default: current.description,
         name: 'description',
-        message: 'Ingresa la descripción:',
+        message: chalk.blue.bold('Ingresa la descripción:'),
       },
       {
         type: 'list',
         default: current.tdp,
         name: 'tdp',
-        message: 'Ingresa Coord. TDP:',
+        message: chalk.blue.bold('Ingresa Coord. TDP:'),
         choices: [
           { name: 'Omar Loayza Becerra', value: 'Omar Loayza Becerra' },
           { name: 'Julio Carmen Rodriguez', value: 'Julio Carmen Rodriguez' },
@@ -67,25 +68,25 @@ async function updateDetails(current, info) {
         type: 'input',
         default: current.fechaPaP,
         name: 'fechaPaP',
-        message: 'Ingresa fecha de pase:',
+        message: chalk.blue.bold('Ingresa fecha de pase:'),
       },
       {
         type: 'input',
         default: current.horaPaPi,
         name: 'horaPaPi',
-        message: 'Ingresa hora inicio:',
+        message: chalk.blue.bold('Ingresa hora inicio:'),
       },
       {
         type: 'input',
         default: current.horaPaPf,
         name: 'horaPaPf',
-        message: 'Ingresa hora fin:',
+        message: chalk.blue.bold('Ingresa hora fin:'),
       },
       {
         type: 'list',
         default: current.despliegue,
         name: 'despliegue',
-        message: 'Desplegado por:',
+        message: chalk.blue.bold('Desplegado por:'),
         choices: [
           { name: 'NTTDATA', value: 'NTTDATA' },
           { name: 'TDP', value: 'TDP' },
@@ -95,13 +96,13 @@ async function updateDetails(current, info) {
         type: 'input',
         default: current.sistema,
         name: 'sistema',
-        message: 'Ingrese el Sistema:',
+        message: chalk.blue.bold('Ingrese el Sistema:'),
       },
       {
         type: 'list',
         default: current.niubiz,
         name: 'niubiz',
-        message: 'Ingresa Coord. Niubiz:',
+        message: chalk.blue.bold('Ingresa Coord. Niubiz:'),
         choices: [
           { name: 'Cesar Curitomay', value: 'Cesar Curitomay' },
           { name: 'Brando Avila', value: 'Brando Avila' },
@@ -114,21 +115,15 @@ async function updateDetails(current, info) {
         type: 'list',
         default: current.menu,
         name: 'menu',
-        message: '¿Se modifico el Menu GECOI ?',
-        choices: [
-          { name: 'SI', value: 'SI' },
-          { name: 'NO', value: 'NO' },
-        ],
+        message: chalk.blue.bold('¿Se modifico el Menu GECOI ?'),
+        choices: [{ name: 'SI' }, { name: 'NO', checked: true }],
       },
       {
         type: 'list',
         default: current.clearing,
         name: 'clearing',
-        message: '¿Clearing Controlado ?',
-        choices: [
-          { name: 'SI', value: 'SI' },
-          { name: 'NO', value: 'NO' },
-        ],
+        message: chalk.blue.bold('¿Clearing Controlado ?'),
+        choices: [{ name: 'SI' }, { name: 'NO', checked: true }],
       },
     ]);
 
@@ -147,12 +142,12 @@ async function updateDetails(current, info) {
 
     await fs.writeFile('bd.json', JSON.stringify(info), function (err) {
       if (err) {
-        console.log(err);
+        console.log(chalk.white.bgRed(err));
       }
-      console.log('Datos actualizados correctamente!');
+      console.log(chalk.white.bgGreen('Datos actualizados correctamente!'));
     });
   } catch (error) {
-    console.log('¡Algo salió mal!', error);
+    console.log(chalk.white.bgRed('¡Algo salió mal!', error));
   }
 }
 

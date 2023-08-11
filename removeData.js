@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 import fs from 'fs';
 import queryDB from './queryDB.js';
 import dbFileCheck from './dbFileCheck.js';
@@ -11,7 +12,7 @@ export default async function removeData(info) {
       {
         type: 'input',
         name: 'recordID',
-        message: 'Ingresa el ID del Registro',
+        message: chalk.blue('Ingresa el ID del Registro:'),
       },
     ]);
 
@@ -25,12 +26,12 @@ export default async function removeData(info) {
 
     fs.writeFile('bd.json', JSON.stringify(remnantData), function (err) {
       if (err) {
-        console.log(err);
+        console.log(chalk.red(err));
       }
-      console.log('¡Dato eliminado correctamente!');
+      console.log(chalk.red('¡Dato eliminado correctamente!'));
     });
   } catch (error) {
-    console.log('¡Algo salió mal!', error);
+    console.log(chalk.white.bgRed('¡Algo salió mal!', error));
   }
 }
 

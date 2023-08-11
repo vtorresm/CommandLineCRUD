@@ -1,4 +1,5 @@
 import fs from 'fs';
+import chalk from 'chalk';
 
 export default async function queryDB(externalFunction) {
   try {
@@ -10,7 +11,7 @@ export default async function queryDB(externalFunction) {
         console.log(info);
 
         if (err) {
-          console.log(err);
+          console.log(chalk.white.bgRed(err));
           return;
         }
 
@@ -26,6 +27,6 @@ export default async function queryDB(externalFunction) {
       }
     }
   } catch (error) {
-    console.error(`Algo ocurrió: ${error.message}`);
+    console.error(chalk.white.bgRed(`Algo ocurrió: ${error.message}`));
   }
 }
