@@ -1,5 +1,5 @@
 {
-  "name": "commandlinePaP",
+  "name": "commandlinepap",
   "version": "1.0.0",
   "description": "Creación una aplicación CRUD de línea de comandos con Node.js",
   "main": "index.js",
